@@ -1,4 +1,4 @@
-const CryptoStatsRepository = require("../repositories/stats.repository");
+const CryptoStatsRepository = require("../repositories/cryptoStats.repository");
 const axios = require("axios");
 
 class CryptoStatsService {
