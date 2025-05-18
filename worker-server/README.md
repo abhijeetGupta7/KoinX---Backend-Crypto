@@ -107,7 +107,7 @@ REDIS_URL=redis://localhost:6379
 Run the worker manually:
 
 ```bash
-node job.js
+npm start
 ```
 
 You should see console logs indicating messages being published every 15 minutes.
