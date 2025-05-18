@@ -15,7 +15,7 @@ async function start() {
   console.log('Worker server started. Publishing every 15 minutes...');
 
   // Publish every 15 minutes
-  cron.schedule('*/1 * * * *', async () => {
+  cron.schedule('*/15 * * * *', async () => {
     try {
       const message = JSON.stringify({ trigger: 'update' });
       await redisClient.publish('crypto-update', message);
