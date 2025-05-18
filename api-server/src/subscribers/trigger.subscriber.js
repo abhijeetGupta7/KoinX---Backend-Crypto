@@ -1,7 +1,11 @@
 const redis = require('redis');
 const StatsService = require('../services/stats.service'); 
+const { REDIS_URL } = require('../config/server-config');
 async function startSubscriber() {
-  const subscriber = redis.createClient();
+  const subscriber = redis.createClient({
+    url: REDIS_URL
+  });
+
   await subscriber.connect();
 
   const statsService = new StatsService();

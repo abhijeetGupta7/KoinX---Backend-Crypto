@@ -1,10 +1,10 @@
 // This script is a worker server that publishes messages (trigger:update) to a Redis channel every 15 minutes.
-
+require('dotenv').config({ path: '../.env' });
 const cron = require('node-cron');
 const { createClient } = require('redis');
 
 const redisClient = createClient({
-  url: process.env.REDIS_URL || 'redis://localhost:6379'
+  url: process.env.REDIS_URL
 });
 
 redisClient.on('error', (err) => console.error('Redis Client Error', err));

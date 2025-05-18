@@ -4,7 +4,7 @@
   "description": "A **lightweight yet production-ready worker server** responsible for periodically triggering cryptocurrency data refreshes for the Crypto Stats platform. This Node.js service publishes update events to a Redis channel every 15 minutes, allowing the API server to fetch the latest stats on demand—ensuring real-time data delivery while maintaining a decoupled, scalable architecture.",
   "main": "job.js",
   "scripts": {
-    "start" : "node job.js",
+    "start": "node job.js",
     "dev": "npx nodemon job.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "node-cron": "^4.0.5",
     "redis": "^5.0.1"
   }
