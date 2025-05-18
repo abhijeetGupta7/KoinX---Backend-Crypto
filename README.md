@@ -124,17 +124,41 @@ This project is deployed on [Render](https://render.com) using their **Free Web 
 
 ---
 
-### 🌐 Public API Endpoint
+### 🌐 Public API Base URL
 
-The **API server** is publicly accessible at:
+All API endpoints are accessible under the base URL:
 
-🔗 [https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin](https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin)
+```
+https://koinx-backend-crypto.onrender.com/api/v1
+```
 
-> Replace `bitcoin` with any valid coin ID such as `ethereum`, `dogecoin`, etc., to fetch cryptocurrency statistics.
+### 🔹 Available Endpoints
+
+* **Stats:**
+  `/stats?coin={coin_id}`
+  Fetches statistics for the specified cryptocurrency.
+
+  **Example:**
+  [https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin](https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin)
+
+* **Deviation:**
+  `/deviation?coin={coin_id}`
+  Fetches deviation data for the specified cryptocurrency.
+
+  **Example:**
+  [https://koinx-backend-crypto.onrender.com/api/v1/deviation?coin=ethereum](https://koinx-backend-crypto.onrender.com/api/v1/deviation?coin=ethereum)
+
+### 🔸 Supported Coins
+
+Currently, the API supports these coins:
+
+* `bitcoin`
+* `ethereum`
+* `dogecoin`
+
+> Replace `{coin_id}` with any of the above coin names in the query parameter to get data.
 
 ---
-
-
 
 ### 🔄 Worker-server as Background Worker with Cron
 
