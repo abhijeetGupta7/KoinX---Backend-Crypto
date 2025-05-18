@@ -1,3 +1,5 @@
+// This is the repository for handling cryptocurrency statistics in a MongoDB database.
+
 const CryptoStats = require('../models/cryptoStats.model');
 
 class CryptoStatsRepository {

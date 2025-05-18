@@ -1,3 +1,5 @@
+// This is script for connecting to a MongoDB database using Mongoose.
+
 const mongoose=require("mongoose");
 const { MONGO_URI } = require("./server-config");
 

@@ -1,3 +1,5 @@
+// This is controller for handling cryptocurrency statistics requests in the api-server application.
+
 const { StatusCodes } = require('http-status-codes');
 const StatsService = require('../services/stats.service');
 const successResponse = require('../utils/common/success-response');

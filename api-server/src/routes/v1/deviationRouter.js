@@ -1,4 +1,5 @@
 // This code defines an Express router for handling requests related to cryptocurrency price deviations.
+
 const express = require('express');
 const { query } = require('express-validator');
 const deviationController = require('../../controllers/deviation.controller');

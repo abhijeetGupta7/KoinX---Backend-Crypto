@@ -1,3 +1,5 @@
+// This is the validator middleware for validating incoming requests in api-server application.
+
 const { validationResult } = require("express-validator");
 
 module.exports = (req, res, next) => {

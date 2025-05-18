@@ -1,3 +1,5 @@
+// This is the deviation controller for handling requests related to standard deviation calculations.
+
 const { StatusCodes } = require('http-status-codes');
 const successResponse = require('../utils/common/success-response');
 const errorResponse = require('../utils/common/error-response');

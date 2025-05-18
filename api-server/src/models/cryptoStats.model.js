@@ -1,3 +1,5 @@
+// This is the database model for handling cryptocurrency statistics in a MongoDB database.
+
 const mongoose = require('mongoose');
 
 const cryptoStatsSchema = new mongoose.Schema({

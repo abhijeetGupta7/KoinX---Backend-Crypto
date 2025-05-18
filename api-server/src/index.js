@@ -1,3 +1,5 @@
+// This file is the main entry point for the api-server application.
+
 require('dotenv').config({ path: '../.env' });
 const http = require('http');
 const app = require('./app');
