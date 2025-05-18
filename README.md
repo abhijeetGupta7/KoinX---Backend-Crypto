@@ -118,37 +118,64 @@ Refer to each service’s README for specific instructions and configurations:
 
 ---
 
----
-
-## 🚀 Deployment Notes
+# 🚀 Deployment Notes
 
 This project is deployed on [Render](https://render.com) using their **Free Web Service** tier.
 
-### 🔄 Background Worker with Cron
-The `worker-server` uses `node-cron` to run scheduled jobs every **15 minutes**, publishing messages (`trigger: update`) to a Redis pub/sub channel named `crypto-update`.
+---
 
-### 🌐 Running as Web Service (Port Hack)
-Render’s Free Web Services **require port binding**, which doesn't naturally suit background worker processes.  
-To bypass this limitation, we’ve added a **minimal HTTP server** (`http.createServer(...)`) that keeps the service alive — a widely used workaround to simulate persistent workers on the free plan.
+### 🌐 Public API Endpoint
 
-> 🛠 **Note**: This approach is safe and commonly practiced. It allows us to deploy the worker for free without needing Render’s paid "Background Worker" tier.
+The **API server** is publicly accessible at:
 
-### 📡 Redis via Upstash
-We use [**Upstash Redis**](https://upstash.com/) for Redis Pub/Sub communication between services.  
-Upstash is a **serverless, cloud-hosted Redis** with:
-- Global replication
-- REST-based API (but we used native Redis client)
-- No need to manage Redis manually
+🔗 [https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin](https://koinx-backend-crypto.onrender.com/api/v1/stats?coin=bitcoin)
 
-This improves scalability and reduces infrastructure complexity.
-
-### ☁ Future Improvements (Production Scale)
-For full-scale production readiness, we can deploy on platforms like **GCP**, **AWS**, or **Heroku (paid tier)** where:
-- Redis and MongoDB can be provisioned as managed cloud services
-- Dedicated background jobs can run without HTTP workarounds
+> Replace `bitcoin` with any valid coin ID such as `ethereum`, `dogecoin`, etc., to fetch cryptocurrency statistics.
 
 ---
 
-✅ **API Server**: Deployed on Render  
-✅ **Worker Server**: Deployed on Render Free Tier using port-hack workaround  
-✅ **Redis**: Powered by [Upstash Redis](https://upstash.com)
+
+
+### 🔄 Worker-server as Background Worker with Cron
+
+The `worker-server` runs scheduled jobs every **15 minutes** using `node-cron`. It publishes messages (`trigger: update`) to a Redis pub/sub channel named `crypto-update`.
+
+Since Render's Free Web Service requires an open port for deployment, a **minimal HTTP server** is added to keep the worker alive — a commonly used workaround often referred to as the “port hack.”
+
+> **Note:** This is a safe and effective practice for running background jobs on free tiers without dedicated worker support.
+
+---
+
+### 📡 Redis via Upstash
+
+We use [**Upstash Redis**](https://upstash.com/) for Redis Pub/Sub communication between services.  
+Upstash is a **serverless, cloud-hosted Redis** provider offering:
+
+- Global replication  
+- REST-based API and native Redis client  
+- No infrastructure management required  
+
+This setup improves scalability, reliability, and reduces operational overhead.
+
+---
+
+### ☁ Future Improvements (Production Scale)
+
+For production-grade deployments, consider moving to platforms such as **GCP**, **AWS**, or **Heroku (paid tier)** where:
+
+- Managed Redis and MongoDB services are available  
+- Background workers can run without HTTP port workarounds  
+- More robust scaling and monitoring features are supported  
+
+---
+
+### ✅ Summary of Deployment
+
+| Component      | Deployment Platform       | Notes                                  |
+| -------------- | ------------------------ | ------------------------------------ |
+| API Server     | Render Free Web Service  | Public API accessible over HTTPS     |
+| Worker Server  | Render Free Web Service  | Runs background jobs with port hack  |
+| Redis          | Upstash                  | Serverless Redis with Pub/Sub support|
+
+---
+
