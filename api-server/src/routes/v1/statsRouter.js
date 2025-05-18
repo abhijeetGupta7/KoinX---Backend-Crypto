@@ -16,11 +16,11 @@ const router = express.Router();
 router.get(
   '/',
   [
-    query('coinId')
+    query('coin')
       .notEmpty()
-      .withMessage('coinId is required')
+      .withMessage('coin (id)  is required')
       .isIn(['bitcoin', 'ethereum', 'matic-network'])
-      .withMessage('Invalid coinId'),
+      .withMessage('Invalid coin (id)'),
     validate,
   ],
   statsController.getLatestCryptoStats
